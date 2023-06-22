@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const stopButton = document.getElementById("stopBtn");
 
     let position = 0
-    let speed = 10;
+    let speed = 5;
     let direction = 1;
     let animation;
 
@@ -45,16 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //équation permettant d'incrémenter dans les deux sens la position de la ball
         position += speed * direction;
-/*
-        // condition qui permet à la ball d'aller vers la droite et de revenir à la gauche
-        if (position >= width && position === width) {
-            direction = -1;
-        }
-        // condition qui permet à la ball de rebondir dès qu'elle revient à la position 0
-        else if (position <= 0 && position === 0) {
-            direction = 1;
-        }
-*/
        
         if (position >= width || position <= 0) {
             direction *= -1;
