@@ -17,6 +17,10 @@
     - si la balle atteint les limites droite OU gauche de l'écran - On multiplie par -1 la direction pour l'inverser !
     - appeler cette fonction au prochain rafraîchissement.
  - Déclarez un évènement "DOMContentLoaded"
+
+    - à l'intérieur, on récupère la balle
+    - on récupère la limite à droite de l'écran(taille de l'écran moins la largeur de la balle)
+    - appeler la fonction "animateBall"
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,39 +34,70 @@ document.addEventListener("DOMContentLoaded", () => {
     let speed = 10;
     let direction = 1;
     let animation;
+    let animations;
 
-    // calcul du largeur du navigateur
+    // affichage de la largeur du navigateur
     const windowWidth = window.innerWidth;
-
+    const windowHeight = window.innerHeight;
+    // largeur du navigateur
     let width = windowWidth - Ball.scrollWidth;
+    let height = windowHeight - Ball.scrollHeight;
 
-    let moveWidthRAF = () => {
+    // fonction animateBall permet de faire bouger la ball de la droite vers la gauche
+    let animateBall = () => {
 
+        //équation permettant d'incrémenter dans les deux sens la position de la ball
         position += speed * direction;
 
+        // condition qui permet à la ball d'aller vers la droite et de revenir à la gauche
         if (position >= width && position === width) {
             direction = -1;
         }
+        // condition qui permet à la ball de rebondir dès qu'elle revient à la position 0
         else if (position <= 0 && position === 0) {
             direction = 1;
         }
 
+        // équation permettant de modifier la position de la ball sur l'axe X
         Ball.style.transform = "translateX(" + position + "px)";
 
-        animation = requestAnimationFrame(moveWidthRAF);
+        animation = requestAnimationFrame(animateBall);
 
     };
 
-    moveWidthRAF();
+    let animatBall = () => {
+        
+        //équation permettant d'incrémenter dans les deux sens la position de la ball
+        position += speed * direction;
+
+        // condition qui permet à la ball d'aller vers la droite et de revenir à la gauche
+
+        if (position >= height && position === height) {
+            direction = -1;
+        }
+        // condition qui permet à la ball de rebondir dès qu'elle revient à la position 0
+        else if (position <= 0 && position === 0) {
+            direction = 1;
+        }
+
+        Ball.style.transform = "translateY(" + position + "px)";
+        animations = requestAnimationFrame(animatBall);
+    };
+
+
+    //animateBall();
 
     startButton.addEventListener("click", () => {
         // Changer l'état des boutons
-
+        startButton.classList.remove("btn-outline-primary");
+        startButton.classList.add("btn-primary");
+        stopButton.classList.remove("btn-outline-danger");
+        stopButton.classList.add("btn-danger");
         startButton.disabled = true;
         stopButton.disabled = false;
 
         // Démarrer l'animation
-        requestAnimationFrame(moveWidthRAF);
+        requestAnimationFrame(animateBall);
     });
 
     stopButton.addEventListener("click", () => {
@@ -70,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Changer l'état des boutons
         startButton.disabled = false;
         stopButton.disabled = true;
-        startButton.innerText = "continue";
+        startButton.innerText = "Continue";
 
         // Arrêter l'animation
         cancelAnimationFrame(animation);
