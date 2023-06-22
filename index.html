@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <!-- <script src="script.js"></script> -->
+    <script src="main.js"></script>
+    <title>Double Animations</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        div.ball {
+            width: 100px;
+            height: 100px;
+            margin-block: 2rem;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="py-5 my-5">
+        <div class="text-center my-5">
+            <button id="startBtn" class="btn btn-outline-primary border-5 px-5 py-3">Start</button>
+            <button id="stopBtn" class="btn btn-outline-danger  border-5 px-5 py-3">Stop</button>
+        </div>
+        <div class="rounded-circle border-5 bg-primary ball" id="ball"></div>
+    </div>
+
+</body>
+
+</html>
