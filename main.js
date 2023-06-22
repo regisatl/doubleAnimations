@@ -34,14 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let speed = 10;
     let direction = 1;
     let animation;
-    let animations;
 
     // affichage de la largeur du navigateur
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     // largeur du navigateur
     let width = windowWidth - Ball.scrollWidth;
-    let height = windowHeight - Ball.scrollHeight;
 
     // fonction animateBall permet de faire bouger la ball de la droite vers la gauche
     let animateBall = () => {
@@ -64,28 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
         animation = requestAnimationFrame(animateBall);
 
     };
-
-    let animatBall = () => {
-        
-        //équation permettant d'incrémenter dans les deux sens la position de la ball
-        position += speed * direction;
-
-        // condition qui permet à la ball d'aller vers la droite et de revenir à la gauche
-
-        if (position >= height && position === height) {
-            direction = -1;
-        }
-        // condition qui permet à la ball de rebondir dès qu'elle revient à la position 0
-        else if (position <= 0 && position === 0) {
-            direction = 1;
-        }
-
-        Ball.style.transform = "translateY(" + position + "px)";
-        animations = requestAnimationFrame(animatBall);
-    };
-
-
-    //animateBall();
 
     startButton.addEventListener("click", () => {
         // Changer l'état des boutons
